@@ -1,0 +1,47 @@
+﻿@page
+@using Microsoft.AspNetCore.Html
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@*<div class="text-center">
+
+    
+    @if (Model.Data.Count() > 0)
+    {
+        @foreach (var data in Model.Data)
+
+        {
+            <h1>@data.Description</h1>
+            
+            @foreach ( var part in data.HasPart)
+            {
+                <h2>@part.Description</h2>
+                @(new HtmlString(@part.HasPart[0].Text))
+            }
+            
+        }
+    }
+
+</div>*@
+
+<p>The answer to everything is @ViewData["Categories"]</p>
+<div class="container">
+    <div class="row">
+        @foreach (var data in Model.Data)
+        {
+            @foreach (var part in data.HasPart)
+            {
+                <a class="card1" href="#">
+
+                    <div class="col-sm">
+                        <h3>@part.Url.ToString().Substring(@part.Url.ToString().LastIndexOf('#') + 1)</h3>
+                    </div>
+                </a>
+            }
+        }
+
+
+    </div>
+</div>
