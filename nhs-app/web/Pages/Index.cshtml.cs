@@ -16,25 +16,21 @@ namespace web.Pages
     {
         private readonly IRequestHandler _dataService;
         public List<Data> Data { get; set; }
-      
+        public  List<string> Urls { get; set; }
+
 
         public IndexModel(IRequestHandler dataService)
         {
             _dataService = dataService;
-          
         }
 
         public void OnGet()
         {
-         //   x = ViewData["Categories"]
-
-
+ 
             Data = _dataService.GetData();
-            var hasPart = Data.Select(item => item.HasPart).ToList();
-            var urls = hasPart.Select(x => x.Select(p => p.Url.AbsolutePath.ToString())).ToList();
+            Urls = _dataService.GetUrls();
+         
         
         }
-        
-        
     }
 }

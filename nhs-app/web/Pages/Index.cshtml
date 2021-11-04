@@ -26,10 +26,15 @@
 
 </div>*@
 
-<p>The answer to everything is @ViewData["Categories"]</p>
+@foreach (var url in Model.Urls)
+{
+    <li>@url</li> 
+}
+
 <div class="container">
     <div class="row">
         @foreach (var data in Model.Data)
+     
         {
             @foreach (var part in data.HasPart)
             {

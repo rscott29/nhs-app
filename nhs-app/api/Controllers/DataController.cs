@@ -19,7 +19,7 @@ namespace api.Controllers
         [HttpGet]
         public  List<Data> Get()
         {
-           var data = _dataService.GetData();
+            var data = _dataService.GetData();
            return data;
         }
     }
