@@ -36,7 +36,7 @@ namespace api.Services
             return response.Data;
         }
 
-        public List<string> GetUrls()
+        public List<string> GetCategories()
         {
             var request = new RestRequest { };
             request.AddHeader("subscription-key", "186bb808eec7443bbda66f7ed7a7f313");
@@ -45,21 +45,22 @@ namespace api.Services
             List<IEnumerable<string>> parts = response.Data.Select(x => x.HasPart.Select(u => u.Url.AbsolutePath))
                 .ToList();
           
-            List<string> urls = new List<string>();
+            List<string> catergories = new List<string>();
             foreach (var url in parts)
             {
+                // removing anything that causes duplicate categories
                 var partsList = url.Distinct().ToList();
-               
+                partsList.RemoveAll(i => i.Contains("treatment"));
+                partsList.RemoveAll(i => i.Contains("behaviours"));
                 foreach (string stringUrl in partsList)
                 {
-                    urls.Add(stringUrl.Split("/")[3]);
-               //     urls.RemoveAll(i => i.Contains("treatment") && i.Contains("behaviours"));
-         
-
+     
+                    var strippedUrls = stringUrl.Split("/")[3];
+                    catergories.Add(strippedUrls);
                 }
             }
 
-            return urls;
+            return catergories;
         }
     }
 }

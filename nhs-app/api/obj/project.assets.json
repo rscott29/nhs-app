@@ -649,28 +649,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rs359\\.nuget\\packages\\": {}
+    "C:\\Users\\Rich\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\code\\nhs-app\\nhs-app\\api\\api.csproj",
+      "projectUniqueName": "C:\\Users\\Rich\\RiderProjects\\nhs-app\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "C:\\code\\nhs-app\\nhs-app\\api\\api.csproj",
-      "packagesPath": "C:\\Users\\rs359\\.nuget\\packages\\",
-      "outputPath": "C:\\code\\nhs-app\\nhs-app\\api\\obj\\",
+      "projectPath": "C:\\Users\\Rich\\RiderProjects\\nhs-app\\api\\api.csproj",
+      "packagesPath": "C:\\Users\\Rich\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Rich\\RiderProjects\\nhs-app\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rs359\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Rich\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nottscc.pkgs.visualstudio.com/_packaging/DS_Nuget/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {

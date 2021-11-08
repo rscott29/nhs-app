@@ -5,48 +5,87 @@
     ViewData["Title"] = "Home page";
 }
 
-@*<div class="text-center">
 
-    
-    @if (Model.Data.Count() > 0)
-    {
-        @foreach (var data in Model.Data)
+@{
+    int col1 = 0;
+    int col2 = 0;
 
-        {
-            <h1>@data.Description</h1>
-            
-            @foreach ( var part in data.HasPart)
+    <div class="flex-container">
+        
+ 
+  
+    <div class="row">
+        <div class="col s12 m4 l3" >
+           @foreach (var data in Model.Data)
+           {
+               @foreach (var category in Model.Categories)
+               {
+                   if (@col1 % 2 == 0)
+                   {
+
+                       <div class="card">
+                           <div class="card-image waves-effect waves-block waves-light">
+                               <img class="activator" src="images/card-gradient.jpg">
+                           </div>
+                           <div class="card-content">
+                               <span class="card-title grey-text text-darken-4 modal-trigger" data-target="modal1">@category
+                                   <i class="material-icons right">more_vert</i></span>
+                               <p><a href="@data)">This is a link</a></p>
+                           </div>
+                           <div class="card-reveal">
+                               <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                               <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                           </div>
+
+                       </div>
+
+                   }
+                   col1 = col1 + 1;
+               }
+           }
+        </div>
+        <div class="col s12 m4 l3">
+            @foreach (var category in Model.Categories)
             {
-                <h2>@part.Description</h2>
-                @(new HtmlString(@part.HasPart[0].Text))
-            }
             
-        }
-    }
-
-</div>*@
-
-@foreach (var url in Model.Urls)
-{
-    <li>@url</li> 
+                if (@col2 % 2 != 0)
+                {
+             
+                    <div class="card">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="images/card-gradient.jpg">
+                        </div>
+                        
+                        <div class="card-content">
+                            <span class="card-title  grey-text text-darken-4">@category
+                                <i class="material-icons right">more_vert</i></span>
+                            <p><a href="#">This is a link</a></p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                        </div>
+                                            
+                    </div>
+               
+                }
+            
+                col2 = col2 + 1;
+            
+            }
+     
+        </div>
+    </div>
+        </div>
 }
 
-<div class="container">
-    <div class="row">
-        @foreach (var data in Model.Data)
-     
-        {
-            @foreach (var part in data.HasPart)
-            {
-                <a class="card1" href="#">
-
-                    <div class="col-sm">
-                        <h3>@part.Url.ToString().Substring(@part.Url.ToString().LastIndexOf('#') + 1)</h3>
-                    </div>
-                </a>
-            }
-        }
-
-
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
     </div>
 </div>

@@ -16,7 +16,7 @@ namespace web.Pages
     {
         private readonly IRequestHandler _dataService;
         public List<Data> Data { get; set; }
-        public  List<string> Urls { get; set; }
+        public  List<string> Categories { get; set; }
 
 
         public IndexModel(IRequestHandler dataService)
@@ -28,9 +28,9 @@ namespace web.Pages
         {
  
             Data = _dataService.GetData();
-            Urls = _dataService.GetUrls();
-         
-        
+            Categories = _dataService.GetCategories();
+
+
         }
     }
 }

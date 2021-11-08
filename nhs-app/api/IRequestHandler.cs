@@ -6,6 +6,6 @@ namespace api
     public interface IRequestHandler
     {
         List<Data> GetData();
-        List<string> GetUrls();
+        List<string> GetCategories();
     }
 }
