@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using RestSharp;
+using api.Models;
 
 namespace api
 {
     public interface IRequestHandler
     {
-        List<Data> GetData();
-        List<string> GetCategories();
+        List<ViewModelData> GetData();
+      
     }
 }

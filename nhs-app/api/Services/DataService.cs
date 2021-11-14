@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
-using System.Security.Policy;
+using api.Models;
 using RestSharp;
-
 
 namespace api.Services
 {
     public class DataService : IRequestHandler
     {
         private static IRestClient _restClient;
-
+        List<ViewModelData> dataViewModel = new List<ViewModelData>();
         public DataService()
         {
             var baseUrl = "https://api.nhs.uk/mental-health";
-            _restClient = new RestClient()
+            _restClient = new RestClient
             {
-                BaseUrl = new Uri(baseUrl),
+                BaseUrl = new Uri(baseUrl)
             };
         }
 
@@ -26,41 +26,67 @@ namespace api.Services
             _restClient = restClient;
         }
 
-
-        public List<Data> GetData()
+        public List<ViewModelData> GetData()
         {
-            var request = new RestRequest { };
+            var request = new RestRequest();
             request.AddHeader("subscription-key", "186bb808eec7443bbda66f7ed7a7f313");
             request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
             var response = _restClient.Execute<List<Data>>(request);
-            return response.Data;
-        }
+            var viewData = response.Data.SelectMany(d => d.HasPart).ToList();
+            var parts = response.Data.Select(x => x.HasPart.Select(u => u.Url.AbsolutePath.ToString())).ToList();
 
-        public List<string> GetCategories()
-        {
-            var request = new RestRequest { };
-            request.AddHeader("subscription-key", "186bb808eec7443bbda66f7ed7a7f313");
-            request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
-            var response = _restClient.Execute<List<Data>>(request);
-            List<IEnumerable<string>> parts = response.Data.Select(x => x.HasPart.Select(u => u.Url.AbsolutePath))
-                .ToList();
-          
-            List<string> catergories = new List<string>();
+
+            var categories = new List<string>();
+            List<string> partsList = new List<string>(); 
+        
+            string uri = "";
+           
             foreach (var url in parts)
             {
                 // removing anything that causes duplicate categories
-                var partsList = url.Distinct().ToList();
+                partsList = url.Distinct().ToList();
                 partsList.RemoveAll(i => i.Contains("treatment"));
                 partsList.RemoveAll(i => i.Contains("behaviours"));
-                foreach (string stringUrl in partsList)
+                foreach (var stringUrl in partsList)
                 {
-     
                     var strippedUrls = stringUrl.Split("/")[3];
-                    catergories.Add(strippedUrls);
+                    categories.Add(strippedUrls);
+                    
                 }
             }
 
-            return catergories;
+            var textList = viewData.SelectMany(x => x.HasPart.Select(y => y.Text)).ToList();
+
+            foreach (string url in partsList)
+            {
+                uri = url;
+            }
+            foreach (var category in categories)
+        
+            {
+                
+                var deHyphened = category.Replace("-", " ");
+                var groupedText = textList.Where(c => c.Contains(deHyphened));
+                var joinedText = string.Join(", ", groupedText).Trim().Replace(",", "");
+                
+                CreateViewObject(category, joinedText, uri);
+            }
+
+            return dataViewModel;
+            
         }
+
+        private List<ViewModelData> CreateViewObject(string category, string joinedText, string urls) {
+            
+             dataViewModel.Add(new ViewModelData
+            {
+                Catergory = category,
+                Text = joinedText,
+                Url =  urls
+            });
+             return dataViewModel;
+        }
+
     }
+    
 }

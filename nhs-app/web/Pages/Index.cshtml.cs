@@ -1,36 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using api;
-using Microsoft.AspNetCore.Mvc;
+using api.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.CodeAnalysis;
-using Microsoft.Extensions.Logging;
 
 namespace web.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly IRequestHandler _dataService;
-        public List<Data> Data { get; set; }
-        public  List<string> Categories { get; set; }
-
 
         public IndexModel(IRequestHandler dataService)
         {
             _dataService = dataService;
         }
 
+
+        public new List<ViewModelData> ViewData { get; set; }
+
         public void OnGet()
         {
- 
-            Data = _dataService.GetData();
-            Categories = _dataService.GetCategories();
-
-
+            ViewData = _dataService.GetData();
         }
     }
 }

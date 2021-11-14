@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace api
 {
-
-    public partial class Data
+    public class Data
     {
         public Uri Context { get; set; }
         public string Type { get; set; }
@@ -25,13 +24,13 @@ namespace api
         public List<MainEntityOfPage> MainEntityOfPage { get; set; }
     }
 
-    public partial class About
+    public class About
     {
         public string Type { get; set; }
         public string Name { get; set; }
     }
 
-    public partial class Author
+    public class Author
     {
         public Uri Url { get; set; }
         public Uri Logo { get; set; }
@@ -40,28 +39,28 @@ namespace api
         public string Name { get; set; }
     }
 
-    public partial class Breadcrumb
+    public class Breadcrumb
     {
         public Uri Context { get; set; }
         public string Type { get; set; }
         public List<ItemListElement> ItemListElement { get; set; }
     }
 
-    public partial class ItemListElement
+    public class ItemListElement
     {
         public string Type { get; set; }
         public long Position { get; set; }
         public Item Item { get; set; }
     }
 
-    public partial class Item
+    public class Item
     {
         public Uri Id { get; set; }
         public string Name { get; set; }
         public string Genre { get; set; }
     }
 
-    public partial class DataHasPart
+    public class DataHasPart
     {
         public PurpleType Type { get; set; }
         public Uri HasHealthAspect { get; set; }
@@ -71,14 +70,14 @@ namespace api
         public string Headline { get; set; }
     }
 
-    public partial class HasPartHasPart
+    public class HasPartHasPart
     {
         public MainEntityOfPageType Type { get; set; }
         public string Headline { get; set; }
         public string Text { get; set; }
     }
 
-    public partial class MainEntityOfPage
+    public class MainEntityOfPage
     {
         public long Identifier { get; set; }
         public MainEntityOfPageType Type { get; set; }
@@ -89,9 +88,21 @@ namespace api
         public string Url { get; set; }
     }
 
-    public enum MainEntityOfPageType { WebPageElement };
+    public enum MainEntityOfPageType
+    {
+        WebPageElement
+    }
 
-    public enum PurpleType { HealthTopicContent };
+    public enum PurpleType
+    {
+        HealthTopicContent
+    }
 
-    public enum Name { Canonicallinks, Link, RelatedLinks, Toptasks };
+    public enum Name
+    {
+        Canonicallinks,
+        Link,
+        RelatedLinks,
+        Toptasks
+    }
 }

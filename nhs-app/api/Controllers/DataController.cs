@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks.Dataflow;
+using api.Models;
 using Microsoft.AspNetCore.Mvc;
-using RestSharp;
 
 namespace api.Controllers
 {
-    
     [ApiController]
     [Route("api/[controller]")]
     public class DataController : ControllerBase
@@ -16,11 +14,12 @@ namespace api.Controllers
         {
             _dataService = dataService;
         }
+
         [HttpGet]
-        public  List<Data> Get()
+        public List<ViewModelData> Get()
         {
             var data = _dataService.GetData();
-           return data;
+            return data;
         }
     }
 }

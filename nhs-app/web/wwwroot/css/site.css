@@ -9,5 +9,53 @@
 }
 
 .modal-overlay {
-    background: #fff!important;
+    background: #fff !important;
+}
+
+.card-content {
+    height: 200px; /* Your height here */
+    overflow: hidden;
+}
+
+.card-reveal {
+    font-size: 0.5em;
+}
+
+
+.grow {
+    overflow: hidden;
+    -webkit-transform: scale(2.9);
+    -ms-transform: scale(2.9);
+    transform: scale(2.9);
+    z-index: 2;
+    position: absolute;
+    top: 55%;
+    left: 40%;
+    margin-left: -100px;
+    margin-top: -300px;
+    width: 30%;
+
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .3);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s linear;
+}
+.overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+.main {
+    font-size: 2.3em!important;
+    text-align: center;
+    position: relative;
+    top: 25%;
 }

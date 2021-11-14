@@ -4,9 +4,12 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\api\api.csproj" />
+        <ProjectReference Include="..\api\api.csproj"/>
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.11" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.11"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Models"/>
     </ItemGroup>
 </Project>
